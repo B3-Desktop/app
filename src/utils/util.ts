@@ -1,0 +1,1 @@
+export const getPseudoInitials = (pseudo: string) => pseudo.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase()

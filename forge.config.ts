@@ -15,14 +15,14 @@ const config: ForgeConfig = {
   plugins: [
     new WebpackPlugin({
       mainConfig,
-      devContentSecurityPolicy: "connect-src 'self' http://localhost:3001 ws://localhost:3001 'unsafe-eval'",
+      devContentSecurityPolicy: "connect-src 'self' *.googleapis.com",
       renderer: {
         config: rendererConfig,
         entryPoints: [
           {
             html: './src/index.html',
             js: './src/renderer.ts',
-            name: 'main_window',
+            name: '',
             preload: {
               js: './src/preload.ts',
             },
