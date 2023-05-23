@@ -3,22 +3,26 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {createRoot} from 'react-dom/client';
 import {MantineProvider} from '@mantine/core';
 import {SignIn} from './pages/SignIn';
-import './styles/global.css';
 import {Home} from './pages/Home';
 import {ProtectedRoute} from './components/ProtectedRoute';
-import {FirebaseAuthProvider} from './context/AuthContext';
+import {FirebaseAuthProvider} from './contexts/AuthContext';
+import {Notifications} from '@mantine/notifications';
+import {ModalsProvider} from '@mantine/modals';
 
 export const App = () => {
 
     return (
         <FirebaseAuthProvider>
             <MantineProvider withGlobalStyles withNormalizeCSS>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path={'/'} element={<SignIn/>}/>
-                        <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
-                    </Routes>
-                </BrowserRouter>
+                <Notifications position={'top-right'}/>
+                <ModalsProvider>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path={'/'} element={<SignIn/>}/>
+                            <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+                        </Routes>
+                    </BrowserRouter>
+                </ModalsProvider>
             </MantineProvider>
         </FirebaseAuthProvider>
     )

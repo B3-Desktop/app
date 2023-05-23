@@ -21,8 +21,6 @@ const createWindow = async (): Promise<void> => {
     },
   });
 
-
-  console.log(_WEBPACK_ENTRY)
   await mainWindow.loadURL(_WEBPACK_ENTRY);
   mainWindow.maximize();
   mainWindow.show()

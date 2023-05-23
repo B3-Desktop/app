@@ -6,72 +6,66 @@ import {Message} from './Message';
 import {SendBar} from './SendBar';
 import {NoSelectedUser} from './NoSelectedUser';
 import {ChatHeader} from './ChatHeader';
+import {BMSUser} from '../../types/BMSUser';
+import {User} from 'firebase/auth';
+import {BMSMessage} from '../../types/Message';
 
 interface ChatProps {
-    user: any;
-    receiver: any;
+    user: User;
+    receiver: BMSUser;
 }
+
 export const Chat = ({user, receiver}: ChatProps) => {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState<BMSMessage[]>([]);
     const dummy = useRef(null);
 
     useEffect(() => {
-        dummy?.current?.scrollIntoView(/*{ behavior: "smooth" }*/);
+        dummy?.current?.scrollIntoView();
     }, [messages])
 
     useEffect(() => {
         if (receiver) {
-            const unsub = onSnapshot(
+            return onSnapshot(
                 query(
-                    collection(
-                        db,
-                        "users",
-                        user?.uid,
-                        "chatUsers",
-                        receiver?.userId,
-                        "messages"
-                    ),
+                    collection(db, "users", user?.uid, "chatUsers", receiver?.userId, "messages"),
                     orderBy("timestamp")
                 ),
                 (snapshot) => {
-                    setMessages(
-                        snapshot.docs.map((doc) => ({
-                            id: doc.id,
-                            ...doc.data(),
-                        }))
-                    );
+                    const messages = snapshot.docs.map((doc) => (
+                        {id: doc.id, ...doc.data()} as BMSMessage
+                    ));
+                    setMessages(messages);
                 }
             );
-            return unsub;
         }
     }, [receiver]);
 
 
     if (!receiver) {
         return (
-            <NoSelectedUser />
+            <NoSelectedUser/>
         )
     }
 
     return (
-        <div style={{ position: 'relative',height:'100vh', width:'100%'}}>
-            <ChatHeader receiver={receiver} />
-            <Flex direction={'column'} style={{ height: 'calc(100% - 45px)'}} w={'100%'} justify={'end'}>
+        <div style={{position: 'relative', height: '100vh', width: '100%'}}>
+            <ChatHeader receiver={receiver}/>
+            <Flex direction={'column'} style={{height: 'calc(100% - 45px)'}} w={'100%'} justify={'end'}>
                 {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
                 {/* @ts-ignore */}
-                <ScrollArea styles={{ root: { position: 'inherit!important' }}}>
+                <ScrollArea styles={{root: {position: 'inherit!important'}}}>
                     <Flex direction={'column'} gap={'xs'} px={'md'} pt={'xs'}>
                         {
-                            messages.map((m: any) => {
+                            messages.map((m) => {
                                 return (
-                                    <Message key={m.id} content={m.message} sender={m.username} received={m.messageUserId !== user.uid} />
+                                    <Message key={m.id} message={m} isMine={m.messageUserId !== user.uid}/>
                                 )
                             })
                         }
                     </Flex>
-                    <div ref={dummy} />
+                    <div ref={dummy}/>
                 </ScrollArea>
-                <SendBar user={user} receiver={receiver} />
+                <SendBar user={user} receiver={receiver}/>
             </Flex>
         </div>
     )

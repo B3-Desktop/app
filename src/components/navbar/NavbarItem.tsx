@@ -1,32 +1,33 @@
 import React from 'react';
 import {Avatar, Group, Text, UnstyledButton} from '@mantine/core';
 import {getPseudoInitials} from '../../utils/util';
+import {BMSUser} from '../../types/BMSUser';
 
 interface NavbarItemProps {
-    user: any;
-    setSelectedUser: (user: any) => void;
+    user: BMSUser;
+    setSelectedUser: (user: BMSUser) => void;
     active?: boolean;
 }
 
-export const NavbarItem = ({ user, setSelectedUser, active }: NavbarItemProps) => {
+export const NavbarItem = ({user, setSelectedUser, active}: NavbarItemProps) => {
 
     return (
-        <UnstyledButton onClick={() => setSelectedUser(user)}
+        <UnstyledButton
+            onClick={() => setSelectedUser(user)}
             sx={(theme) => ({
                 display: 'block',
                 width: '100%',
                 padding: theme.spacing.xs,
-                color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
-                ...(active && { backgroundColor: theme.colors.green[0] }),
+                color: theme.black,
+                ...(active && {backgroundColor: theme.colors.green[0]}),
 
                 '&:hover': {
-                    backgroundColor:
-                        theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                    backgroundColor: theme.colors.gray[0],
                 },
             })}
         >
             <Group>
-                <Avatar>{ getPseudoInitials(user.username) }</Avatar>
+                <Avatar>{getPseudoInitials(user.username)}</Avatar>
                 <Text size="sm">{user.username}</Text>
             </Group>
         </UnstyledButton>

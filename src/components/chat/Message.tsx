@@ -1,20 +1,21 @@
 import {Avatar, Flex, Paper, Text} from '@mantine/core';
 import {getPseudoInitials} from '../../utils/util';
+import {BMSMessage} from '../../types/Message';
 
 interface MessageProps {
-    sender: string;
-    content: any;
-    received: boolean; // If message is not mine
+    message: BMSMessage
+    isMine: boolean; // If message is not mine
 }
-export const Message = ({ sender, content, received }: MessageProps) => {
+
+export const Message = ({message, isMine}: MessageProps) => {
 
     return (
         <Paper px={'sm'} py={'xs'} withBorder>
             <Flex align={'center'} gap={'.3rem'}>
-                <Avatar color={received ? 'green' : 'blue'} size={'sm'}>{ getPseudoInitials(sender)}</Avatar>
-                <Text>{sender}</Text>
+                <Avatar color={isMine ? 'green' : 'blue'} size={'sm'}>{getPseudoInitials(message.username)}</Avatar>
+                <Text>{message.username}</Text>
             </Flex>
-            <Text size={'sm'} mt={'xs'}>{content}</Text>
+            <Text size={'sm'} mt={'xs'}>{message.message}</Text>
         </Paper>
     )
 

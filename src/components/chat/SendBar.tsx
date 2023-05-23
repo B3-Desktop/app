@@ -3,14 +3,16 @@ import {IconSend} from '@tabler/icons-react';
 import {useState} from 'react';
 import {addDoc, collection} from 'firebase/firestore';
 import {db} from '../../firebase';
+import {BMSUser} from '../../types/BMSUser';
+import {User} from 'firebase/auth';
+import {notifications} from '@mantine/notifications';
 
 interface SendBarProps {
-    user: any;
-    receiver: any;
+    user: User;
+    receiver: BMSUser;
 }
 
-export const SendBar = ({ user, receiver }: SendBarProps) => {
-    const theme = useMantineTheme();
+export const SendBar = ({user, receiver}: SendBarProps) => {
     const [message, setMessage] = useState('');
 
     const sendMessage = async () => {
@@ -34,7 +36,11 @@ export const SendBar = ({ user, receiver }: SendBarProps) => {
                 );
             }
         } catch (error) {
-            console.log(error);
+            notifications.show({
+                title: "Erreur ❌",
+                message: "Une erreur est survenue lors de l'envoi du message",
+                color: "red",
+            })
         } finally {
             setMessage('');
         }
@@ -46,8 +52,8 @@ export const SendBar = ({ user, receiver }: SendBarProps) => {
             radius="xl"
             size="md"
             rightSection={
-                <ActionIcon size={32} radius="xl" color={theme.colors.blue[0]} variant="filled" onClick={sendMessage}>
-                    <IconSend size="1.1rem" stroke={1.5} />
+                <ActionIcon size={32} radius="xl" color={'blue'} variant="filled" onClick={sendMessage}>
+                    <IconSend size="1.1rem" stroke={1.5}/>
                 </ActionIcon>
             }
             placeholder="Envoyer un message"

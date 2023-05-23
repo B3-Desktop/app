@@ -1,7 +1,8 @@
 import {Avatar, createStyles, Divider, Flex, rem, Text} from '@mantine/core';
 import {getPseudoInitials} from '../../utils/util';
+import {BMSUser} from '../../types/BMSUser';
 
-const useStyle = createStyles((theme) => ({
+const useStyle = createStyles(() => ({
     root: {
         position: 'relative',
         top: 0,
@@ -11,18 +12,19 @@ const useStyle = createStyles((theme) => ({
 }));
 
 interface ChatHeaderProps {
-    receiver: any;
+    receiver: BMSUser;
 }
-export const ChatHeader = ({ receiver }: ChatHeaderProps) => {
-    const { classes, theme } = useStyle();
+
+export const ChatHeader = ({receiver}: ChatHeaderProps) => {
+    const {classes, theme} = useStyle();
 
     return (
         <div className={classes.root}>
             <Flex h={'100%'} w={'100%'} align={'center'} gap={'.4rem'} px={'md'}>
-                <Avatar color={'green'} size={'sm'}>{ getPseudoInitials(receiver.username)}</Avatar>
+                <Avatar color={'green'} size={'sm'}>{getPseudoInitials(receiver.username)}</Avatar>
                 <Text size={'md'} fw={550}>{receiver.username}</Text>
             </Flex>
-            <Divider style={{zIndex: 99999}} size={rem(1)} color={theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]}/>
+            <Divider size={rem(1)} color={theme.colors.gray[2]}/>
         </div>
     )
 }

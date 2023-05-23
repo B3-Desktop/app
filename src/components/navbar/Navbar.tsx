@@ -1,38 +1,43 @@
 import React from 'react';
 import {LoadingOverlay, Navbar, ScrollArea} from '@mantine/core';
-import {User} from './NavbarUser';
+import {NavbarConnectedUser} from './NavbarConnectedUser';
 import {NavbarItem} from './NavbarItem';
-import {NavbarTitle} from './NavbarTitle';
+import {NavbarHeader} from './NavbarHeader';
+import {BMSUser} from '../../types/BMSUser';
 
 interface BMSNavbarProps {
-    users: any;
-    selectedUser: any | null;
-    setSelectedUser: (user: any) => void;
+    users: BMSUser[];
+    selectedUser: BMSUser | null;
+    setSelectedUser: (user: BMSUser) => void;
 }
 
 export const BMSNavbar = ({users, selectedUser, setSelectedUser}: BMSNavbarProps) => {
 
     return (
-        <Navbar height={'100vh'}  width={{ base: 375 }}>
+        <Navbar height={'100vh'} width={{base: 375}}>
 
             <Navbar.Section>
-                <NavbarTitle />
+                <NavbarHeader/>
             </Navbar.Section>
 
             <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
-                <LoadingOverlay visible={ users.length === 0 } />
+                <LoadingOverlay visible={users.length === 0}/>
                 {
-                    users.map((user: any) => {
+                    users.map((user) => {
                         return (
-                            <NavbarItem key={user.userId} active={user.userId === selectedUser?.userId} user={user} setSelectedUser={setSelectedUser} />
+                            <NavbarItem
+                                key={user.userId}
+                                active={user.userId === selectedUser?.userId}
+                                user={user}
+                                setSelectedUser={setSelectedUser}
+                            />
                         )
                     })
                 }
-
             </Navbar.Section>
 
             <Navbar.Section>
-                <User />
+                <NavbarConnectedUser/>
             </Navbar.Section>
         </Navbar>
     );

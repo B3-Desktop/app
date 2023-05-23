@@ -80,10 +80,12 @@ export const SignIn = () => {
                 <Text color="dimmed" size="sm" align="center" my={'xs'}>
                     Vos identifiants vous ont été envoyés par mail.
                 </Text>
-                <form onSubmit={form.onSubmit(values => handleSubmit(values)) }>
+                <form onSubmit={form.onSubmit(values => handleSubmit(values))}>
                     <SimpleGrid cols={1} mt={'md'} mb={'xl'} spacing={'sm'}>
-                        <TextInput label="Email" placeholder="you@bmscorp.fr" withAsterisk {...form.getInputProps('email')} />
-                        <PasswordInput label="Mot de passe" placeholder="Mot de passe" withAsterisk {...form.getInputProps('password')}/>
+                        <TextInput label="Email" placeholder="you@bmscorp.fr"
+                                   withAsterisk {...form.getInputProps('email')} />
+                        <PasswordInput label="Mot de passe" placeholder="Mot de passe"
+                                       withAsterisk {...form.getInputProps('password')}/>
                     </SimpleGrid>
 
                     <Button type={'submit'} fullWidth mt="sm">
