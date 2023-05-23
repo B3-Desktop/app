@@ -3,6 +3,7 @@ import {signInWithEmailAndPassword} from 'firebase/auth';
 import {useNavigate} from 'react-router-dom';
 import {auth} from '../firebase';
 import {useForm} from '@mantine/form';
+import {notifications} from '@mantine/notifications';
 
 const useStyles = createStyles((theme) => ({
 
@@ -51,6 +52,12 @@ export const SignIn = () => {
         try {
             await signInWithEmailAndPassword(auth, values.email, values.password)
             navigate("/home");
+            notifications.show({
+                title: 'Succès ✅',
+                message: "Vous êtes maintenant connecté",
+                color: 'green',
+                autoClose: 5000,
+            })
         } catch (error: any) {
             switch (error.code) {
                 case 'auth/invalid-email':
