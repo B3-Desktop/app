@@ -1,6 +1,6 @@
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../firebaseConfig";
 import { messageProps } from "../utils/types";
 
 export default function Message({ message, photoURL, id }: messageProps) {

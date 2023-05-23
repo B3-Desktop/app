@@ -1,6 +1,6 @@
 import { Button, Divider, Flex, Heading, Icon, Input, Stack, Text, useColorMode, useMediaQuery } from '@chakra-ui/react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from 'firebase/auth'
-import { auth, provider } from '../../firebaseConfig'
+import { auth, provider } from '../firebaseConfig'
 import { DarkModeSwitch } from './DarkModeSwitch'
 import { Image } from '@chakra-ui/react'
 import { FcGoogle } from "react-icons/fc";

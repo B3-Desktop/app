@@ -4,7 +4,7 @@ import { formatDistanceToNowStrict } from "date-fns";
 import { collection, query, where } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { db } from "../../../firebaseConfig";
+import { db } from "../../firebaseConfig";
 import { chatHeadertypes } from "../../utils/types";
 
 export default function SingleChatHeader({ chatData, user }: chatHeadertypes) {

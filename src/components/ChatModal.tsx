@@ -19,7 +19,7 @@ import { addDoc, arrayUnion, collection, doc, serverTimestamp, updateDoc } from 
 import { useRouter } from 'next/router'
 import { SyntheticEvent, useState } from "react"
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth, db } from '../../firebaseConfig'
+import { auth, db } from '../firebaseConfig'
 import { chatModalProps } from '../utils/types'
 
 export default function ChatModal({ type, title }: chatModalProps) {

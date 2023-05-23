@@ -11,7 +11,7 @@ import { signOut } from "firebase/auth"
 import { collection, query, where } from "firebase/firestore"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useCollection } from 'react-firebase-hooks/firestore'
-import { auth, db } from "../../firebaseConfig"
+import { auth, db } from "../firebaseConfig"
 import ChatModal from './ChatModal'
 import SingleChat from './singleChats/SingleChat'
 import ChatRooms from './rooms/ChatRooms'

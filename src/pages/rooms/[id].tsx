@@ -1,5 +1,5 @@
 import { Flex, useMediaQuery } from "@chakra-ui/react";
-import { auth, db } from "../../../firebaseConfig";
+import { auth, db } from "../../firebaseConfig";
 import { doc } from "firebase/firestore";
 import React, { useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";

@@ -2,7 +2,7 @@ import { Button, Flex, FormControl, Input } from "@chakra-ui/react"
 import { addDoc, collection, serverTimestamp } from "firebase/firestore"
 import { useState } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
-import { auth, db } from "../../firebaseConfig"
+import { auth, db } from "../firebaseConfig"
 import { chatProps } from "../utils/types"
 
 export default function Chatbox({ scrollRef, id, chatType }: chatProps) {
