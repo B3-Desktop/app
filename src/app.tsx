@@ -5,18 +5,22 @@ import {MantineProvider} from '@mantine/core';
 import {SignIn} from './pages/SignIn';
 import './styles/global.css';
 import {Home} from './pages/Home';
+import {ProtectedRoute} from './components/ProtectedRoute';
+import {FirebaseAuthProvider} from './context/AuthContext';
 
 export const App = () => {
+
     return (
-        <MantineProvider withGlobalStyles withNormalizeCSS>
-            <BrowserRouter>
-                <Routes>
-                    <Route path={'/'} element={<SignIn />} />
-                    {/*<Route path="/signup" element={<SignUp />} />*/}
-                    <Route path="/home" element={<Home/>} />
-                </Routes>
-            </BrowserRouter>
-        </MantineProvider>
+        <FirebaseAuthProvider>
+            <MantineProvider withGlobalStyles withNormalizeCSS>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path={'/'} element={<SignIn/>}/>
+                        <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+                    </Routes>
+                </BrowserRouter>
+            </MantineProvider>
+        </FirebaseAuthProvider>
     )
 }
 

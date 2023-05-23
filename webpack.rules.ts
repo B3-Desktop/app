@@ -1,4 +1,4 @@
-import type { ModuleOptions } from 'webpack';
+import type {ModuleOptions} from 'webpack';
 
 export const rules: Required<ModuleOptions>['rules'] = [
   // Add support for native node modules
@@ -25,6 +25,19 @@ export const rules: Required<ModuleOptions>['rules'] = [
       loader: 'ts-loader',
       options: {
         transpileOnly: true,
+      },
+    },
+  },
+  {
+    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+    use: {
+      loader: "url-loader",
+      options: {
+        limit: 20 * 1024, // 20Kb
+        outputPath: "/",
+        publicPath: "./src/assets/images",
+        name: '[name]-[hash:6].[ext]',
+        esModule: false,
       },
     },
   },

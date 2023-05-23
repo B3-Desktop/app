@@ -10,7 +10,7 @@ const useStyles = createStyles((theme) => ({
         position: 'absolute',
         width: '100%',
         height: '100vh',
-        backgroundColor: '#110042',
+        backgroundColor: 'white',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center bottom',
         backgroundSize: '160vh',
@@ -54,19 +54,18 @@ export const SignIn = () => {
         } catch (error: any) {
             switch (error.code) {
                 case 'auth/invalid-email':
-                    alert('Email invalide');
+                    form.setErrors({email: 'Email invalide'});
                     break;
                 case 'auth/user-disabled':
-                    alert('Utilisateur désactivé');
+                    form.setErrors({email: 'Utilisateur désactivé'});
                     break;
                 case 'auth/user-not-found':
-                    alert('Utilisateur non trouvé');
+                    form.setErrors({email: 'Utilisateur non trouvé'});
                     break;
                 case 'auth/wrong-password':
-                    alert('Mot de passe incorrect');
+                    form.setErrors({password: 'Mot de passe incorrect'});
                     break;
                 default:
-                    alert('Une erreur est survenue');
                     break;
             }
         }

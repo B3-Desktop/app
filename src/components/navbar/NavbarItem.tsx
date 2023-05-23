@@ -1,6 +1,6 @@
 import React from 'react';
 import {Avatar, Group, Text, UnstyledButton} from '@mantine/core';
-import {getPseudoInitials} from '../utils/util';
+import {getPseudoInitials} from '../../utils/util';
 
 interface NavbarItemProps {
     user: any;
@@ -16,7 +16,6 @@ export const NavbarItem = ({ user, setSelectedUser, active }: NavbarItemProps) =
                 display: 'block',
                 width: '100%',
                 padding: theme.spacing.xs,
-                borderRadius: theme.radius.sm,
                 color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
                 ...(active && { backgroundColor: theme.colors.green[0] }),
 

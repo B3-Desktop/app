@@ -1,5 +1,5 @@
 import {Avatar, Flex, Paper, Text} from '@mantine/core';
-import {getPseudoInitials} from '../utils/util';
+import {getPseudoInitials} from '../../utils/util';
 
 interface MessageProps {
     sender: string;

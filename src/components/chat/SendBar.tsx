@@ -2,7 +2,7 @@ import {ActionIcon, TextInput, useMantineTheme} from '@mantine/core';
 import {IconSend} from '@tabler/icons-react';
 import {useState} from 'react';
 import {addDoc, collection} from 'firebase/firestore';
-import {db} from '../firebase';
+import {db} from '../../firebase';
 
 interface SendBarProps {
     user: any;
@@ -52,8 +52,9 @@ export const SendBar = ({ user, receiver }: SendBarProps) => {
             }
             placeholder="Envoyer un message"
             rightSectionWidth={42}
+            value={message}
             onChange={(event) => setMessage(event.currentTarget.value)}
-            // onKeyDown={(event) => event.key === "Enter" && sendMessage()}
+            onKeyDown={(event) => event.key === "Enter" && message !== '' && sendMessage()}
         />
     );
 }

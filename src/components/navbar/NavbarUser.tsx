@@ -1,7 +1,8 @@
 import React from 'react';
 import {Avatar, Box, Divider, Group, rem, Text, UnstyledButton, useMantineTheme} from '@mantine/core';
-import {auth} from '../firebase';
-import {getPseudoInitials} from '../utils/util';
+import {auth} from '../../firebase';
+import {getPseudoInitials} from '../../utils/util';
+import {IconChevronLeft, IconChevronRight} from '@tabler/icons-react';
 
 export function User() {
     const theme = useMantineTheme();
@@ -25,7 +26,7 @@ export function User() {
                 }}
             >
                 <Group>
-                    <Avatar radius="xl" color={'blue'}>{ user?.displayName ? getPseudoInitials(user?.displayName) : 'LO'}</Avatar>
+                    <Avatar radius="xl" size={'md'} color={'blue'}>{ user?.displayName ? getPseudoInitials(user?.displayName) : 'LO'}</Avatar>
                     <Box sx={{ flex: 1 }}>
                         <Text size="sm" weight={500}>
                             { user?.displayName }
@@ -34,6 +35,12 @@ export function User() {
                             { user?.email }
                         </Text>
                     </Box>
+
+                    {theme.dir === 'ltr' ? (
+                        <IconChevronRight size={rem(18)} />
+                    ) : (
+                        <IconChevronLeft size={rem(18)} />
+                    )}
                 </Group>
             </UnstyledButton>
         </>
