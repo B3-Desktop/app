@@ -33,8 +33,7 @@ export default function ChatModal({ type, title }: chatModalProps) {
   const handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
     setChatName(e.currentTarget.value)
   }
-  //if chat exits then dont create a new one
-  //prompt for email address and also for room name
+
   const handleSubmit = async () => {
     const { email } = user
     switch (type) {

@@ -19,21 +19,21 @@ import ChatRooms from './rooms/ChatRooms'
 const Sidebar = ({ fullWidth }: { fullWidth?: boolean }) => {
   const { colorMode, toggleColorMode } = useColorMode()
   const [user] = useAuthState(auth)
-  //get Collection Data for both chats & rooms
+
   const [chatValues] = useCollection(
     query(collection(db, "chats"), where('users', 'array-contains', user.email))
   )
   const [roomValues] = useCollection(
     query(collection(db, "rooms"), where('users', 'array-contains', user.email))
   )
-  //Map over all the chat rooms to create sidebar Links for chatrooms
+
   const chats = chatValues?.docs.map(chat =>
     <SingleChat key={chat.id} id={chat.id} users={chat.data().users} />
   )
   const rooms = roomValues?.docs.map(room =>
     <ChatRooms key={room.id} id={room.id} data={room.data()} />
   )
-  //Button to log users out and push to index page
+
   const handleLogOut = () => {
     signOut(auth)
   }

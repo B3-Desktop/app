@@ -12,9 +12,7 @@ export default function Chatbox({ scrollRef, id, chatType }: chatProps) {
   const handleChange = (e) => {
     setChat(e.target.value)
   }
-  /*get uid and phoroURL from current User then send message 
-  and set chat state to "", then scroll to latst message
-  */
+
   const sendMessage = async (e) => {
     const { uid, photoURL } = user
     e.preventDefault()

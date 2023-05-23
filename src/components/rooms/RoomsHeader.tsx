@@ -9,10 +9,10 @@ export default function RoomsHeader({ chatData, user }: chatHeadertypes) {
   const [isMobile] = useMediaQuery('(max-width: 680px)')
   const router = useRouter()
   const { colorMode } = useColorMode()
-    //filter out other users so only avatars of other users show up
+
   const otherUsers = chatData.users?.filter(singleUser => user.email !== singleUser)
   const userAvatars = otherUsers?.map(singleUser => <Avatar key={Math.random()} name={singleUser} />)
-  //format time to readable format
+
   const timeAgo = chatData.lastSent ? formatDistanceToNowStrict(new Date(chatData?.lastSent.toDate())) : "Not available"
 
   return (
@@ -27,7 +27,7 @@ export default function RoomsHeader({ chatData, user }: chatHeadertypes) {
     >
       <Flex align="center">
         <IconButton
-          // colorScheme='blue'
+
           aria-label='Go Back'
           icon={<ArrowBackIcon />}
           mr="10px"

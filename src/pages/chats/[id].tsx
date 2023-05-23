@@ -17,7 +17,7 @@ export default function Chatroom() {
   const router = useRouter()
   const { id } = router.query
   const lastMessage = useRef(null)
-  // for header I want other users name and details
+
   const [values] = useDocumentData(
     doc(db, "chats", id.toString())
   )

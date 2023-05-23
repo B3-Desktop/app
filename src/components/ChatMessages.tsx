@@ -6,7 +6,7 @@ import { chatProps } from "../utils/types";
 import Message from "./Message";
 
 export default function ChatMessages({ scrollRef, id, chatType }: chatProps) {
-  //get messages then map onto a messages array
+
   const [values] = useCollectionData(
     query(collection(db, `${chatType}`, id, "messages"), orderBy("createdAt", 'asc'))
   )

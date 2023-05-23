@@ -8,10 +8,10 @@ export default function ChatRooms({ data, id }: chatRoomProps) {
   const [user] = useAuthState(auth)
   const { colorMode } = useColorMode()
   const router = useRouter()
-  //filter out other users so only avatars of other users show up
+
   const otherUsers = data.users?.filter(singleUser => user.email !== singleUser)
   const userAvatars = otherUsers?.map(singleUser => <Avatar key={Math.random()} name={singleUser} />)
-  //push to url for specific chat
+
   const handleClick = () => {
     router.push(`/rooms/${id}`)
   }
